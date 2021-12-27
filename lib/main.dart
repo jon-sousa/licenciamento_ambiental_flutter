@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:licenciamento_ambiental/controllers/auth_controller.dart';
 import 'package:licenciamento_ambiental/controllers/cadastro_controller.dart';
 import 'package:licenciamento_ambiental/controllers/solicitacao_controller.dart';
-import 'package:licenciamento_ambiental/pages/cadastro.dart';
-import 'package:licenciamento_ambiental/pages/home.dart';
-import 'package:licenciamento_ambiental/pages/login.dart';
+import 'package:licenciamento_ambiental/pages/cadastro_page.dart';
+import 'package:licenciamento_ambiental/pages/home_page.dart';
+import 'package:licenciamento_ambiental/pages/login_page.dart';
 import 'package:licenciamento_ambiental/providers/shared_preference_repository.dart';
 import 'package:provider/provider.dart';
 

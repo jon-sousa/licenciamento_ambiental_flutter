@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:licenciamento_ambiental/components/card_solicitacao.dart';
 import 'package:licenciamento_ambiental/controllers/solicitacao_controller.dart';
 import 'package:licenciamento_ambiental/models/solicitacao.dart';
-import 'package:licenciamento_ambiental/pages/alterar_cadastro.dart';
-import 'package:licenciamento_ambiental/pages/criar_solicitacao.dart';
+import 'package:licenciamento_ambiental/pages/alterar_cadastro_page.dart';
+import 'package:licenciamento_ambiental/pages/criar_solicitacao_page.dart';
 import 'package:provider/src/provider.dart';
 
 class HomePage extends StatefulWidget {
