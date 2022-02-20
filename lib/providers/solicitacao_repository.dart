@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:typed_data';
 
 import 'package:http/http.dart' as http;
 import 'package:licenciamento_ambiental/models/solicitacao.dart';
@@ -28,18 +29,31 @@ class SolicitacaoRepository {
     return solicitacoes;
   }
 
-  cadastrarSolicitacao(String imovel) async {
+  cadastrarSolicitacao(Map<String, dynamic> solicitacao) async {
     var headers = await _configuraHeaders();
-    headers.addAll({'Content-Type': 'application/json'});
+    headers.addAll({
+      'Content-Type': 'multipart/form-data',
+      'accept': 'multipart/form-data',
+    });
+    print(solicitacao);
 
-    var response = await http.post(
+    var multiPartForm = http.MultipartRequest(
+      'POST',
       Uri.parse('http://localhost:3000/solicitacao/cadastrar-solicitacao'),
-      body: jsonEncode({"imovel": imovel}),
-      headers: headers,
     );
+    multiPartForm.headers.addAll(headers);
+    multiPartForm.fields['imovel'] = solicitacao['imovel'];
+    for (Map<String, Uint8List> documento in solicitacao['files']) {
+      multiPartForm.files.add(http.MultipartFile.fromBytes(
+        'files',
+        documento.values.first,
+        filename: documento.keys.first,
+      ));
+    }
+    var response = await multiPartForm.send();
 
     if (_existeErro(response.statusCode)) {
-      throw Exception(response.body);
+      throw Exception('Erro ao cadaastrar solicitacao');
     }
   }
 

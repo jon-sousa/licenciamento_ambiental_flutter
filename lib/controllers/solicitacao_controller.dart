@@ -5,8 +5,8 @@ import 'package:licenciamento_ambiental/providers/solicitacao_repository.dart';
 class SolicitacaoController extends ChangeNotifier {
   final SolicitacaoRepository _solicitacaoRepository = SolicitacaoRepository();
 
-  cadastrarSolicitacao(String imovel) async {
-    await _solicitacaoRepository.cadastrarSolicitacao(imovel);
+  cadastrarSolicitacao(Map<String, dynamic> solicitacao) async {
+    await _solicitacaoRepository.cadastrarSolicitacao(solicitacao);
     notifyListeners();
   }
 

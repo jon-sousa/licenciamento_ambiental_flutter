@@ -17,12 +17,14 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   late SolicitacaoController _controller;
+  late Future solicitacoesFuture;
 
   @override
   void initState() {
     super.initState();
 
     _controller = context.read<SolicitacaoController>();
+    solicitacoesFuture = _controller.consultarSolicitacoes();
     _controller.addListener(() {
       setState(() {});
     });
@@ -63,8 +65,9 @@ class _HomePageState extends State<HomePage> {
             SingleChildScrollView(
               padding: const EdgeInsets.only(top: 24),
               child: FutureBuilder(
-                future: _controller.consultarSolicitacoes(),
+                future: solicitacoesFuture,
                 builder: (BuildContext context, AsyncSnapshot snapshot) {
+                  print('requisitando ao backend');
                   Widget result;
                   if (snapshot.hasData) {
                     result = buildBody(snapshot.data, context);
@@ -91,7 +94,7 @@ class _HomePageState extends State<HomePage> {
                   child: const Icon(Icons.add),
                   onPressed: () {
                     Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => CriarSolicitacao(),
+                      builder: (context) => const CriarSolicitacao(),
                       fullscreenDialog: true,
                     ));
                   },
