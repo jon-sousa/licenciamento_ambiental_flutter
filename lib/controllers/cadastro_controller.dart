@@ -12,4 +12,10 @@ class CadastroController extends ChangeNotifier {
     var usuario = await _cadastroRepository.consultaCadastro();
     return usuario;
   }
+
+  Future alteraCadastroUsuario(
+      {String? nome, String? cpf, String? telefone, String? endereco}) async {
+    await _cadastroRepository.alteraCadastroUsuario(
+        nome: nome, cpf: cpf, telefone: telefone, endereco: endereco);
+  }
 }

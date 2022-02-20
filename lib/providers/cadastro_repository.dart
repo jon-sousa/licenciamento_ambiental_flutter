@@ -22,7 +22,49 @@ class CadastroRepository {
     return usuario;
   }
 
-  alteraCadastro() {}
+  Future alteraCadastroUsuario(
+      {String? nome, String? cpf, String? telefone, String? endereco}) async {
+    print("nome: $nome");
+    print("cpf: $cpf");
+    print("telefone: $telefone");
+    print("endereco: $endereco");
+
+    Map<String, String> body = {};
+    if (nome != null) {
+      if (nome.isNotEmpty) {
+        body['nome'] = nome;
+      }
+    }
+
+    if (cpf != null) {
+      if (cpf.isNotEmpty) {
+        body['cpf'] = cpf;
+      }
+    }
+    if (telefone != null) {
+      if (telefone.isNotEmpty) {
+        body['telefone'] = telefone;
+      }
+    }
+    if (endereco != null) {
+      if (endereco.isNotEmpty) {
+        body['endereco'] = endereco;
+      }
+    }
+
+    print(body);
+
+    var headers = await _configuraHeaders();
+    var response = await http.post(
+      Uri.parse('http://localhost:3000/usuarios/alterar-usuario/'),
+      headers: headers,
+      body: body,
+    );
+
+    if (_existeErro(response.statusCode)) {
+      throw Exception(response.body);
+    }
+  }
 
   Future<Map<String, String>> _configuraHeaders() async {
     SharedPreferenceRepository? sharedPreferenceRepository =

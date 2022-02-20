@@ -142,13 +142,12 @@ class _AlterarCadastroState extends State<AlterarCadastro> {
                 ElevatedButton(
                   child: const Text('Confirmar'),
                   onPressed: () async {
-                    /*await _controller.cadastroUsuario(
-                          nome: _nomeController.text,
-                          cpf: _cpfController.text,
-                          telefone: _telefoneController.text,
-                          endereco: _enderecoController.text,
-                          senha: _senhaController.text,
-                        );*/
+                    await _controller.alteraCadastroUsuario(
+                      nome: _nomeController.text,
+                      cpf: _cpfController.text,
+                      telefone: _telefoneController.text,
+                      endereco: _enderecoController.text,
+                    );
                   },
                 ),
                 const SizedBox(
