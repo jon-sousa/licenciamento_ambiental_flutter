@@ -24,11 +24,6 @@ class CadastroRepository {
 
   Future alteraCadastroUsuario(
       {String? nome, String? cpf, String? telefone, String? endereco}) async {
-    print("nome: $nome");
-    print("cpf: $cpf");
-    print("telefone: $telefone");
-    print("endereco: $endereco");
-
     Map<String, String> body = {};
     if (nome != null) {
       if (nome.isNotEmpty) {
@@ -51,8 +46,6 @@ class CadastroRepository {
         body['endereco'] = endereco;
       }
     }
-
-    print(body);
 
     var headers = await _configuraHeaders();
     var response = await http.post(
